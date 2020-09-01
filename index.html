@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <script>
+      var $h1 = document.getElementById('nombre')
+      
+      var yo = {
+        nombre: 'Eliseo'
+      }
+      
+      Object.prototype.cuandoCambie = function (nodo, callback) {
+        let valorAntiguo = this[nodo]
+        Object.defineProperty(this, nodo, {
+          get: function () {
+            return valorAntiguo
+          },
+          set: function (nuevoValor) {
+            console.log(nuevoValor, '·', valorAntiguo);
+            callback(nuevoValor, valorAntiguo || undefined)
+            valorAntiguo = nuevoValor
+          }
+        })
+      }
+      
+      yo.cuandoCambie('nombre', function (valorNuevo, valorAnterior) {
+        $h1.textContent = 'Mi nombre era ' + valorAnterior + ' pero cambio a ' + valorNuevo
+      })
+    </script>
+  </head>
+  <body>
+    <h1 id="nombre">Mi nombre es Cesar</h1>
+    <input type="text" onchange="yo.nombre=this.value">
+  </body>
+</html>
