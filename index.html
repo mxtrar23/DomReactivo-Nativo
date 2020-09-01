@@ -1,7 +1,6 @@
 <html>
   <head>
     <script>
-      var $h1 = document.getElementById('nombre')
       
       var yo = {
         nombre: 'Cesar'
@@ -29,5 +28,14 @@
   <body>
     <h1 id="nombre">Mi nombre es Cesar</h1>
     <input type="text" onchange="yo.nombre=this.value">
+    <script>
+
+        var $h1 = document.getElementById('nombre')
+
+         yo.cuandoCambie('nombre', function (valorNuevo, valorAnterior) {
+        $h1.textContent = 'Mi nombre era ' + valorAnterior + ' pero cambio a ' + valorNuevo
+      })
+    </script>
   </body>
 </html>
+
